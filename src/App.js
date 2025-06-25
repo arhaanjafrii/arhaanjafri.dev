@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 const DISCORD_ID = '819731408444063755';
 const LANYARD_API = `https://api.lanyard.rest/v1/users/${DISCORD_ID}`;
 
-function App() {
+function MainPage() {
   const [time, setTime] = useState('');
   const [spotify, setSpotify] = useState(null);
   const [discordStatus, setDiscordStatus] = useState('offline');
@@ -52,9 +53,9 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="greeting superbold">Hi, I'm Arhaan. <span className="wave" role="img" aria-label="wave">👋</span></h1>
+      <h1 className="greeting superbold">Hey, I'm Arhaan. <span className="wave" role="img" aria-label="wave">👋</span></h1>
       <div className="desc">
-        <p>I'm a highschooler in Austin, Texas. I'm big into robotics. Check out my projects <a href="#" className="link slightbold" target="_blank" rel="noopener noreferrer">here</a>!</p>
+        <p>I'm a highschooler in Austin, Texas. I'm big into robotics. Check out my projects <Link to="/projects/" className="link slightbold">here</Link>!</p>
         <p style={{marginTop: '1.3em'}}>I am the founder of <a href="https://cirkit.crazeddd.dev/" target="_blank" rel="noopener noreferrer" className="link slightbold">CirKit</a>, a service that delivers projects to your doorstep, designed by students, for students.</p>
       </div>
       <div className="time-status">
@@ -87,4 +88,21 @@ function App() {
   );
 }
 
-export default App;
+function ProjectsPage() {
+  return (
+    <div className="container">
+      <h1 className="greeting superbold">Projects <span className="robot" role="img" aria-label="robot">🤖</span></h1>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/projects/" element={<ProjectsPage />} />
+        <Route path="*" element={<MainPage />} />
+      </Routes>
+    </Router>
+  );
+}

@@ -236,3 +236,17 @@
 .copyright:hover {
   opacity: 1;
 }
+
+.robot {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(.4,2,.6,1);
+  cursor: pointer;
+}
+.robot:hover {
+  animation: robot-spin 0.6s linear 1;
+  transform: rotate(360deg);
+}
+@keyframes robot-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
