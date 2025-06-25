@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 
 const DISCORD_ID = '819731408444063755';
 const LANYARD_API = `https://api.lanyard.rest/v1/users/${DISCORD_ID}`;
@@ -144,8 +144,8 @@ function ProjectsPage() {
     document.title = 'Projects | arhaanjafri.dev';
   }, []);
   return (
-    <div className="container">
-      <h1 className="greeting superbold">Projects <span className="robot" role="img" aria-label="robot">🤖</span></h1>
+    <div className="container" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '80vh'}}>
+      <h1 className="greeting superbold" style={{textAlign: 'center'}}>Coming soon...</h1>
     </div>
   );
 }
