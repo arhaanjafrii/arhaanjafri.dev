@@ -89,7 +89,7 @@ function MainPage() {
     <div className="container">
       <h1 className="greeting superbold">Hey, I'm Arhaan. <span className="wave" role="img" aria-label="wave">👋</span></h1>
       <div className="desc">
-        <p>I'm a highschooler in Austin, Texas. I'm big into robotics. Check out my projects <Link to="/projects/" className="link slightbold">here</Link>!</p>
+        <p>I'm a high school student based in Austin, Texas with a strong passion for robotics. You can check out my projects <Link to="/projects/" className="link slightbold">here</Link>!</p>
         <p style={{marginTop: '1.3em'}}>I am the founder of <a href="https://cirkit.crazeddd.dev/" target="_blank" rel="noopener noreferrer" className="link slightbold">CirKit</a>, a service that delivers projects to your doorstep, designed by students, for students.</p>
       </div>
       <div className="time-status">
