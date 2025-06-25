@@ -14,7 +14,7 @@ function MainPage() {
   const [showStatusTip, setShowStatusTip] = useState(false);
 
   useEffect(() => {
-    document.title = 'arhaanjafri.dev';
+    document.title = 'home | arhaan jafri';
   }, []);
 
   useEffect(() => {
@@ -144,7 +144,7 @@ function MainPage() {
 
 function ProjectsPage() {
   useEffect(() => {
-    document.title = 'arhaanjafri.dev';
+    document.title = 'projects | arhaan jafri';
   }, []);
   const [showSoonTip, setShowSoonTip] = useState(false);
   return (
@@ -155,7 +155,7 @@ function ProjectsPage() {
         onMouseEnter={() => setShowSoonTip(true)}
         onMouseLeave={() => setShowSoonTip(false)}
       >
-        Coming soon...
+        Coming soon... <i className="fa-solid fa-code" style={{ color: '#B197FC' }}></i>
         {showSoonTip && (
           <span className="soon-tooltip">jk im gonna procrastinate this</span>
         )}
