@@ -14,7 +14,7 @@ function MainPage() {
   const [showStatusTip, setShowStatusTip] = useState(false);
 
   useEffect(() => {
-    document.title = 'Home | arhaanjafri.dev';
+    document.title = 'arhaanjafri.dev';
   }, []);
 
   useEffect(() => {
@@ -143,9 +143,20 @@ function ProjectsPage() {
   useEffect(() => {
     document.title = 'Projects | arhaanjafri.dev';
   }, []);
+  const [showSoonTip, setShowSoonTip] = useState(false);
   return (
-    <div className="container" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '80vh'}}>
-      <h1 className="greeting superbold" style={{textAlign: 'center'}}>Coming soon...</h1>
+    <div className="container">
+      <h1
+        className="greeting superbold soon-anchor"
+        style={{textAlign: 'left', position: 'relative', width: 'fit-content'}}
+        onMouseEnter={() => setShowSoonTip(true)}
+        onMouseLeave={() => setShowSoonTip(false)}
+      >
+        Coming soon...
+        {showSoonTip && (
+          <span className="soon-tooltip">jk im gonna procrastinate this</span>
+        )}
+      </h1>
     </div>
   );
 }

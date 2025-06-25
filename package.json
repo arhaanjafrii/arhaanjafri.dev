@@ -35,7 +35,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://arhaanjafrii.github.io/arhaanjafri.dev/",
+  "homepage": "https://arhaanjafrii.github.io/arhaanjafri.dev",
   "devDependencies": {
     "gh-pages": "^6.3.0"
   }

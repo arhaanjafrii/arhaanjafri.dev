@@ -372,3 +372,24 @@
   z-index: 1;
   pointer-events: none;
 }
+
+.soon-tooltip {
+  position: absolute;
+  left: 50%;
+  top: -2.1em;
+  transform: translateX(-50%);
+  background: #18181b;
+  color: #bbb;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.95;
+}
+.soon-anchor {
+  position: relative;
+  display: inline-block;
+}
