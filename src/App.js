@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { HashRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 
 const DISCORD_ID = '819731408444063755';
 const LANYARD_API = `https://api.lanyard.rest/v1/users/${DISCORD_ID}`;
@@ -124,7 +124,7 @@ function MainPage() {
             </div>
           </div>
         ) : (
-          <div className="spotify-card empty">Not listening to Spotify right now😔</div>
+          <div className="spotify-card empty">Not listening to Spotify right now 😔</div>
         )}
       </div>
       <div className="contact-section">
