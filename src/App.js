@@ -124,7 +124,7 @@ function MainPage() {
             </div>
           </div>
         ) : (
-          <div className="spotify-card empty">Not listening to Spotify right now 😔</div>
+          <div className="spotify-card empty">Not listening to Spotify right now</div>
         )}
       </div>
       <div className="contact-section">
@@ -141,7 +141,7 @@ function MainPage() {
 
 function ProjectsPage() {
   useEffect(() => {
-    document.title = 'Projects | arhaanjafri.dev';
+    document.title = 'arhaanjafri.dev';
   }, []);
   const [showSoonTip, setShowSoonTip] = useState(false);
   return (
