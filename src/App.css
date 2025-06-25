@@ -112,15 +112,15 @@
   }
   
   .spotify-progress {
-    width: 120px;
+    width: 180px;
   }
   
   .bar-bg {
-    width: 120px;
+    width: 180px;
   }
   
   .bar-times {
-    width: 120px;
+    width: 180px;
   }
 }
 
@@ -160,15 +160,15 @@
   }
   
   .spotify-progress {
-    width: 100px;
+    width: 150px;
   }
   
   .bar-bg {
-    width: 100px;
+    width: 150px;
   }
   
   .bar-times {
-    width: 100px;
+    width: 150px;
   }
 }
 
@@ -260,8 +260,11 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  max-width: 350px;
+  max-width: 500px;
   margin-bottom: 1.2rem;
+  border-top: 1px dashed #222;
+  padding-top: 0.5rem;
+  margin-top: 0.2rem;
 }
 
 .spotify-label {
@@ -527,13 +530,13 @@
 
 .spotify-progress {
   margin-top: 6px;
-  width: 140px;
+  width: 210px;
 }
 .bar-bg {
   background: #23232a;
   border-radius: 4px;
   height: 4px;
-  width: 140px;
+  width: 210px;
   position: relative;
   overflow: hidden;
 }
@@ -549,5 +552,5 @@
   font-size: 0.71em;
   color: #bbb;
   margin-top: 2px;
-  width: 140px;
+  width: 210px;
 }
