@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/arhaanjafri.dev/static/css/main.adc4c77b.css",
+    "main.js": "/arhaanjafri.dev/static/js/main.40801c17.js",
+    "index.html": "/arhaanjafri.dev/index.html",
+    "main.adc4c77b.css.map": "/arhaanjafri.dev/static/css/main.adc4c77b.css.map",
+    "main.40801c17.js.map": "/arhaanjafri.dev/static/js/main.40801c17.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.adc4c77b.css",
+    "static/js/main.40801c17.js"
+  ]
+}
