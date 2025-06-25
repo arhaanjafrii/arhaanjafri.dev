@@ -97,13 +97,13 @@
 }
 
 .link {
-  color: #a494dd;
+  color: #B197FC;
   text-decoration: underline;
   transition: color 0.15s;
   font-weight: 1000;
 }
 .link:hover {
-  color: #c3b2e6;
+  color: #d1c2fa;
 }
 
 .time-status {
@@ -393,4 +393,13 @@
 .soon-anchor {
   position: relative;
   display: inline-block;
+}
+
+.heart-icon {
+  margin-left: 0.3em;
+  transition: transform 0.18s cubic-bezier(.4,2,.6,1);
+  cursor: pointer;
+}
+.heart-icon:hover {
+  transform: scale(1.25);
 }
