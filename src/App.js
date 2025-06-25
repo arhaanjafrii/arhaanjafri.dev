@@ -91,7 +91,7 @@ function MainPage() {
         Hey, I'm Arhaan. <i className="fa-solid fa-heart heart-icon" style={{ color: '#B197FC' }}></i>
       </h1>
       <div className="desc">
-        <p>I'm a high school student based in Austin, Texas with a strong passion for robotics. You can check out my projects <Link to="/projects/" className="link slightbold">here</Link>!</p>
+        <p>I'm a highschooler in Austin, Texas. I'm big into robotics. Check out my projects <Link to="/projects/" className="link slightbold">here</Link>!</p>
         <p style={{marginTop: '1.3em'}}>I am the founder of <a href="https://cirkit.crazeddd.dev/" target="_blank" rel="noopener noreferrer" className="link slightbold">CirKit</a>, a service that delivers projects to your doorstep, designed by students, for students.</p>
       </div>
       <div className="time-status">
@@ -116,17 +116,18 @@ function MainPage() {
         </span> on Discord.
       </div>
       <div className="spotify-section">
-        <div className="spotify-label">Spotify Status</div>
+        {spotify && <div className="spotify-label">Listening to Spotify</div>}
         {spotify ? (
           <div className="spotify-card">
             <img className="album-art" src={spotify.album_art_url} alt="Album Art" />
             <div className="track-info">
               <div className="track-name single-line">{spotify.song}</div>
               <div className="track-artist greyed">{spotify.artist}</div>
+              <SpotifyProgressBar spotify={spotify} />
             </div>
           </div>
         ) : (
-          <div className="spotify-card empty">Not listening to Spotify right now</div>
+          <div className="spotify-card empty">Not listening to Spotify currently</div>
         )}
       </div>
       <div className="contact-section">
@@ -159,6 +160,37 @@ function ProjectsPage() {
           <span className="soon-tooltip">jk im gonna procrastinate this</span>
         )}
       </h1>
+    </div>
+  );
+}
+
+function SpotifyProgressBar({ spotify }) {
+  const [now, setNow] = React.useState(Date.now());
+  React.useEffect(() => {
+    const interval = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+  if (!spotify.timestamps) return null;
+  const start = spotify.timestamps.start;
+  const end = spotify.timestamps.end;
+  const duration = end - start;
+  const elapsed = Math.min(now - start, duration);
+  const percent = Math.max(0, Math.min(1, elapsed / duration));
+  const format = ms => {
+    const s = Math.floor(ms / 1000);
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m}:${sec.toString().padStart(2, '0')}`;
+  };
+  return (
+    <div className="spotify-progress">
+      <div className="bar-bg">
+        <div className="bar-fg" style={{ width: `${percent * 100}%` }} />
+      </div>
+      <div className="bar-times">
+        <span>{format(elapsed)}</span>
+        <span>{format(duration)}</span>
+      </div>
     </div>
   );
 }
