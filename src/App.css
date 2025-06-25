@@ -122,6 +122,16 @@
   font-weight: 600;
   margin-left: 2px;
 }
+.discord-dnd {
+  color: #ff4b4b;
+  font-weight: 600;
+  margin-left: 4px;
+}
+.discord-idle {
+  color: #ffe066;
+  font-weight: 600;
+  margin-left: 4px;
+}
 
 .spotify-section {
   display: flex;
@@ -249,4 +259,42 @@
 @keyframes robot-spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.sleep-tooltip {
+  position: absolute;
+  left: 50%;
+  top: -2.1em;
+  transform: translateX(-50%);
+  background: #18181b;
+  color: #bbb;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.95;
+}
+.time-tooltip-anchor {
+  position: relative;
+  display: inline-block;
+}
+
+.status-tooltip {
+  position: absolute;
+  left: 50%;
+  top: -2.1em;
+  transform: translateX(-50%);
+  background: #18181b;
+  color: #bbb;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.95;
 }
