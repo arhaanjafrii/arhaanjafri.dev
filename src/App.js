@@ -12,6 +12,7 @@ function MainPage() {
   const [showSleepTip, setShowSleepTip] = useState(false);
   const [isSleepTime, setIsSleepTime] = useState(false);
   const [showStatusTip, setShowStatusTip] = useState(false);
+  const [spotifyTilt, setSpotifyTilt] = useState({ x: 0, y: 0, shadow: '' });
 
   useEffect(() => {
     document.title = 'home | arhaan jafri';
@@ -88,10 +89,10 @@ function MainPage() {
   return (
     <div className="container">
       <h1 className="greeting superbold">
-        Hi! I'm Arhaan. <i className="fa-solid fa-heart heart-icon" style={{ color: '#B197FC' }}></i>
+        Hey! I'm Arhaan. <i className="fa-solid fa-heart heart-icon" style={{ color: '#B197FC' }}></i>
       </h1>
       <div className="desc">
-        <p>I'm a high school student based in Austin, Texas with a strong passion for robotics. You can check out my projects <Link to="/projects/" className="link slightbold">here</Link>!</p>
+        <p>High school student in Austin, Texas focused on robotics and mechatronics. Check out my projects <Link to="/projects/" className="link slightbold">here</Link>!</p>
         <p style={{marginTop: '1.3em'}}>I am the founder of <a href="https://cirkit.crazeddd.dev/" target="_blank" rel="noopener noreferrer" className="link slightbold">CirKit</a>, a service that delivers hands-on hardware and electronics kits to your doorstep — designed by students, for students.</p>
       </div>
       <div className="time-status">
@@ -104,6 +105,9 @@ function MainPage() {
           {time}
           {isSleepTime && showSleepTip && (
             <span className="sleep-tooltip">im probably sleeping right now 😴</span>
+          )}
+          {!isSleepTime && showSleepTip && (
+            <span className="sleep-tooltip">im probably awake, feel free to contact!</span>
           )}
         </span> for me, and I'm <span
           className={isOnline ? 'discord-online' : 'discord-offline'}
@@ -118,8 +122,50 @@ function MainPage() {
       <div className="spotify-section">
         {spotify && <div className="spotify-label">Listening to Spotify<i className="fa-brands fa-spotify" style={{ color: '#888', marginLeft: '0.4em', position: 'relative', top: '0px' }}></i></div>}
         {spotify ? (
-          <div className="spotify-card">
-            <img className="album-art" src={spotify.album_art_url} alt="Album Art" />
+          <div
+            className="spotify-card"
+            style={{
+              position: 'relative',
+              overflow: 'hidden',
+              transform: `perspective(600px) rotateY(${spotifyTilt.x}deg) rotateX(${spotifyTilt.y}deg) scale(1.03)` ,
+              background: 'rgba(24,24,27,0.28)',
+              backdropFilter: (Math.abs(spotifyTilt.x) < 1 && Math.abs(spotifyTilt.y) < 1) ? 'blur(18px) saturate(1.3)' : 'blur(0px)',
+              boxShadow: (Math.abs(spotifyTilt.x) > 1 || Math.abs(spotifyTilt.y) > 1)
+                ? `${-spotifyTilt.x * 2}px ${12 + spotifyTilt.y * 2}px 32px 0 rgba(177,151,252,0.07)`
+                : 'none',
+            }}
+            onMouseMove={e => {
+              const card = e.currentTarget;
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const maxTilt = 12;
+              const tiltX = ((x - centerX) / centerX) * maxTilt;
+              const tiltY = -((y - centerY) / centerY) * maxTilt;
+              setSpotifyTilt({
+                x: tiltX.toFixed(2),
+                y: tiltY.toFixed(2),
+                shadow: 'none'
+              });
+            }}
+            onMouseLeave={() => setSpotifyTilt({ x: 0, y: 0, shadow: '' })}
+          >
+            <div
+              className="spotify-bg-art"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                zIndex: 0,
+                backgroundImage: `url('${spotify.album_art_url}')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                filter: (Math.abs(spotifyTilt.x) < 1 && Math.abs(spotifyTilt.y) < 1) ? 'blur(18px) saturate(1.3)' : 'blur(0px)',
+                opacity: 0.45,
+                transition: 'filter 0.3s, opacity 0.3s'
+              }}
+            />
             <div className="track-info">
               <div className="track-name single-line">{spotify.song}</div>
               <div className="track-artist greyed">{spotify.artist}</div>
@@ -127,7 +173,45 @@ function MainPage() {
             </div>
           </div>
         ) : (
-          <div className="spotify-card empty">Not listening to Spotify currently</div>
+          <div
+            className="spotify-card empty"
+            style={{
+              position: 'relative',
+              overflow: 'hidden',
+              transform: `perspective(600px) rotateY(${spotifyTilt.x}deg) rotateX(${spotifyTilt.y}deg) scale(1.03)` ,
+              background: 'rgba(24,24,27,0.28)',
+              backdropFilter: (Math.abs(spotifyTilt.x) < 1 && Math.abs(spotifyTilt.y) < 1) ? 'blur(18px)' : 'blur(0px)',
+              boxShadow: (Math.abs(spotifyTilt.x) > 1 || Math.abs(spotifyTilt.y) > 1)
+                ? `${-spotifyTilt.x * 2}px ${12 + spotifyTilt.y * 2}px 32px 0 rgba(177,151,252,0.07)`
+                : 'none',
+              minHeight: 70,
+              display: 'flex',
+              alignItems: 'center',
+              fontStyle: 'italic',
+              color: '#555',
+              fontSize: '1.05rem',
+              fontWeight: 500
+            }}
+            onMouseMove={e => {
+              const card = e.currentTarget;
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const maxTilt = 12;
+              const tiltX = ((x - centerX) / centerX) * maxTilt;
+              const tiltY = -((y - centerY) / centerY) * maxTilt;
+              setSpotifyTilt({
+                x: tiltX.toFixed(2),
+                y: tiltY.toFixed(2),
+                shadow: 'none'
+              });
+            }}
+            onMouseLeave={() => setSpotifyTilt({ x: 0, y: 0, shadow: '' })}
+          >
+            Not listening to Spotify currently
+          </div>
         )}
       </div>
       <div className="contact-section">
