@@ -116,7 +116,7 @@ function MainPage() {
         </span>.
       </div>
       <div className="spotify-section">
-        {spotify && <div className="spotify-label">Listening to Spotify</div>}
+        {spotify && <div className="spotify-label">Listening to Spotify<i className="fa-brands fa-spotify" style={{ color: '#888', marginLeft: '0.4em', position: 'relative', top: '0px' }}></i></div>}
         {spotify ? (
           <div className="spotify-card">
             <img className="album-art" src={spotify.album_art_url} alt="Album Art" />
@@ -137,7 +137,7 @@ function MainPage() {
           <li><a href="https://instagram.com/arhaanjafrii" className="link slightbold" target="_blank" rel="noopener noreferrer">@arhaanjafrii</a> on instagram</li>
         </ul>
       </div>
-      <div className="copyright">© 2025</div>
+      <div className="copyright">© 2025 Arhaan Jafri</div>
     </div>
   );
 }
