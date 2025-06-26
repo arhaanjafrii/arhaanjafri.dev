@@ -88,7 +88,7 @@ function MainPage() {
   return (
     <div className="container">
       <h1 className="greeting superbold">
-        Hey, I'm Arhaan. <i className="fa-solid fa-heart heart-icon" style={{ color: '#B197FC' }}></i>
+        Hi! I'm Arhaan. <i className="fa-solid fa-heart heart-icon" style={{ color: '#B197FC' }}></i>
       </h1>
       <div className="desc">
         <p>I'm a high school student based in Austin, Texas with a strong passion for robotics. You can check out my projects <Link to="/projects/" className="link slightbold">here</Link>!</p>
