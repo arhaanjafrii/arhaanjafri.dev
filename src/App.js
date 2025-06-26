@@ -113,7 +113,7 @@ function MainPage() {
         >
           {discordStatusText}
           {(showStatusTip && statusTip) && statusTip}
-        </span> on Discord.
+        </span>.
       </div>
       <div className="spotify-section">
         {spotify && <div className="spotify-label">Listening to Spotify</div>}
