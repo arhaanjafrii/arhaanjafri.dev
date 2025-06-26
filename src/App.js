@@ -130,10 +130,8 @@ function MainPage() {
               position: 'relative',
               overflow: 'hidden',
               transform: `perspective(600px) rotateY(${spotifyTilt.x}deg) rotateX(${spotifyTilt.y}deg) scale(1.03)` ,
-              background: 'rgba(24,24,27,0.28)',
-              backdropFilter: isSpotifyHovered ? 'blur(0px)' : 'blur(8px) saturate(1.1)',
               boxShadow: isSpotifyHovered
-                ? `${-spotifyTilt.x * 2}px ${12 + spotifyTilt.y * 2}px 32px 0 rgba(255,255,255,0.09)`
+                ? `${-spotifyTilt.x * 2}px ${12 + spotifyTilt.y * 2}px 32px 0 rgba(255,255,255,0.04)`
                 : 'none',
             }}
             onMouseMove={e => {
@@ -153,11 +151,9 @@ function MainPage() {
               });
             }}
             onMouseEnter={() => setIsSpotifyHovered(true)}
-            onMouseLeave={e => {
-              if (!e.currentTarget.contains(e.relatedTarget)) {
-                setSpotifyTilt({ x: 0, y: 0, shadow: '' });
-                setIsSpotifyHovered(false);
-              }
+            onMouseLeave={() => {
+              setSpotifyTilt({ x: 0, y: 0, shadow: '' });
+              setIsSpotifyHovered(false);
             }}
           >
             <div
@@ -169,8 +165,8 @@ function MainPage() {
                 backgroundImage: `url('${spotify.album_art_url}')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                filter: (Math.abs(spotifyTilt.x) < 1 && Math.abs(spotifyTilt.y) < 1) ? 'blur(18px) saturate(1.3)' : 'blur(0px)',
-                opacity: 0.45,
+                filter: isSpotifyHovered ? 'blur(0px) saturate(1.2)' : 'blur(12px) saturate(1.2)',
+                opacity: 0.2,
                 transition: 'filter 0.3s, opacity 0.3s'
               }}
             />
@@ -187,8 +183,6 @@ function MainPage() {
               position: 'relative',
               overflow: 'hidden',
               transform: `perspective(600px) rotateY(${spotifyTilt.x}deg) rotateX(${spotifyTilt.y}deg) scale(1.03)` ,
-              background: 'rgba(24,24,27,0.28)',
-              backdropFilter: isSpotifyEmptyHovered ? 'blur(0px)' : 'blur(8px) saturate(1.1)',
               boxShadow: isSpotifyEmptyHovered
                 ? `${-spotifyTilt.x * 2}px ${12 + spotifyTilt.y * 2}px 32px 0 rgba(255,255,255,0.09)`
                 : 'none',
@@ -217,11 +211,9 @@ function MainPage() {
               });
             }}
             onMouseEnter={() => setIsSpotifyEmptyHovered(true)}
-            onMouseLeave={e => {
-              if (!e.currentTarget.contains(e.relatedTarget)) {
-                setSpotifyTilt({ x: 0, y: 0, shadow: '' });
-                setIsSpotifyEmptyHovered(false);
-              }
+            onMouseLeave={() => {
+              setSpotifyTilt({ x: 0, y: 0, shadow: '' });
+              setIsSpotifyEmptyHovered(false);
             }}
           >
             Not listening to Spotify currently

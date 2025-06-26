@@ -43,7 +43,6 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  background: #0f0f0f;
   font-family: 'Geist Mono', monospace;
   color: #fff;
   padding: 2.5rem 0 2rem 6rem;
@@ -281,7 +280,7 @@
 .spotify-card {
   display: flex;
   align-items: center;
-  background: rgba(24, 24, 27, 0.35);
+  background: transparent;
   border-radius: 12px;
   padding: 0.8rem 1.1rem;
   min-height: 70px;
@@ -291,19 +290,20 @@
   min-width: 220px;
   max-width: 100%;
   flex-wrap: nowrap;
-  backdrop-filter: blur(18px) saturate(1.3);
-  border: none;
+  backdrop-filter: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 .spotify-card:hover {
   box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18), 0 1.5px 8px 0 rgba(177,151,252,0.10);
   transform: perspective(600px) rotateY(8deg) scale(1.03);
-  background: rgba(24, 24, 27, 0.85);
+  background: transparent;
 }
 .spotify-card.empty {
   justify-content: flex-start;
   color: #555;
   font-style: italic;
 }
+
 .album-art {
   width: 72px;
   height: 72px; 
