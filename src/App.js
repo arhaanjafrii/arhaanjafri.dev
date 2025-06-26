@@ -13,6 +13,8 @@ function MainPage() {
   const [isSleepTime, setIsSleepTime] = useState(false);
   const [showStatusTip, setShowStatusTip] = useState(false);
   const [spotifyTilt, setSpotifyTilt] = useState({ x: 0, y: 0, shadow: '' });
+  const [isSpotifyHovered, setIsSpotifyHovered] = useState(false);
+  const [isSpotifyEmptyHovered, setIsSpotifyEmptyHovered] = useState(false);
 
   useEffect(() => {
     document.title = 'home | arhaan jafri';
@@ -129,9 +131,9 @@ function MainPage() {
               overflow: 'hidden',
               transform: `perspective(600px) rotateY(${spotifyTilt.x}deg) rotateX(${spotifyTilt.y}deg) scale(1.03)` ,
               background: 'rgba(24,24,27,0.28)',
-              backdropFilter: (Math.abs(spotifyTilt.x) < 1 && Math.abs(spotifyTilt.y) < 1) ? 'blur(18px) saturate(1.3)' : 'blur(0px)',
-              boxShadow: (Math.abs(spotifyTilt.x) > 1 || Math.abs(spotifyTilt.y) > 1)
-                ? `${-spotifyTilt.x * 2}px ${12 + spotifyTilt.y * 2}px 32px 0 rgba(177,151,252,0.07)`
+              backdropFilter: isSpotifyHovered ? 'blur(0px)' : 'blur(8px) saturate(1.1)',
+              boxShadow: isSpotifyHovered
+                ? `${-spotifyTilt.x * 2}px ${12 + spotifyTilt.y * 2}px 32px 0 rgba(255,255,255,0.09)`
                 : 'none',
             }}
             onMouseMove={e => {
@@ -150,7 +152,13 @@ function MainPage() {
                 shadow: 'none'
               });
             }}
-            onMouseLeave={() => setSpotifyTilt({ x: 0, y: 0, shadow: '' })}
+            onMouseEnter={() => setIsSpotifyHovered(true)}
+            onMouseLeave={e => {
+              if (!e.currentTarget.contains(e.relatedTarget)) {
+                setSpotifyTilt({ x: 0, y: 0, shadow: '' });
+                setIsSpotifyHovered(false);
+              }
+            }}
           >
             <div
               className="spotify-bg-art"
@@ -180,9 +188,9 @@ function MainPage() {
               overflow: 'hidden',
               transform: `perspective(600px) rotateY(${spotifyTilt.x}deg) rotateX(${spotifyTilt.y}deg) scale(1.03)` ,
               background: 'rgba(24,24,27,0.28)',
-              backdropFilter: (Math.abs(spotifyTilt.x) < 1 && Math.abs(spotifyTilt.y) < 1) ? 'blur(18px)' : 'blur(0px)',
-              boxShadow: (Math.abs(spotifyTilt.x) > 1 || Math.abs(spotifyTilt.y) > 1)
-                ? `${-spotifyTilt.x * 2}px ${12 + spotifyTilt.y * 2}px 32px 0 rgba(177,151,252,0.07)`
+              backdropFilter: isSpotifyEmptyHovered ? 'blur(0px)' : 'blur(8px) saturate(1.1)',
+              boxShadow: isSpotifyEmptyHovered
+                ? `${-spotifyTilt.x * 2}px ${12 + spotifyTilt.y * 2}px 32px 0 rgba(255,255,255,0.09)`
                 : 'none',
               minHeight: 70,
               display: 'flex',
@@ -208,7 +216,13 @@ function MainPage() {
                 shadow: 'none'
               });
             }}
-            onMouseLeave={() => setSpotifyTilt({ x: 0, y: 0, shadow: '' })}
+            onMouseEnter={() => setIsSpotifyEmptyHovered(true)}
+            onMouseLeave={e => {
+              if (!e.currentTarget.contains(e.relatedTarget)) {
+                setSpotifyTilt({ x: 0, y: 0, shadow: '' });
+                setIsSpotifyEmptyHovered(false);
+              }
+            }}
           >
             Not listening to Spotify currently
           </div>
