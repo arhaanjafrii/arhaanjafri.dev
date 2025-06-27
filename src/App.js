@@ -31,7 +31,7 @@ function MainPage() {
         timeZone: 'America/Chicago',
       };
       setTime(now.toLocaleTimeString('en-US', options));
-      // Check if between 1:30am and 9am
+      // check if between 2:00am and 10am
       let hour = now.toLocaleString('en-US', { hour: '2-digit', hour12: true, timeZone: 'America/Chicago' });
       let minute = now.toLocaleString('en-US', { minute: '2-digit', timeZone: 'America/Chicago' });
       let ampm = now.toLocaleString('en-US', { hour: '2-digit', hour12: true, timeZone: 'America/Chicago' }).includes('AM');
@@ -39,9 +39,9 @@ function MainPage() {
       minute = parseInt(minute, 10);
       let isSleep = false;
       if (ampm) {
-        if (hour === 12) hour = 0; // 12am is 0
+        if (hour === 12) hour = 0; 
         const totalMinutes = hour * 60 + minute;
-        if (totalMinutes >= 90 && totalMinutes < 540) { // 1:30am (90) to 9:00am (540)
+        if (totalMinutes >= 120 && totalMinutes < 600) { 
           isSleep = true;
         }
       }
@@ -142,8 +142,10 @@ function MainPage() {
               const centerX = rect.width / 2;
               const centerY = rect.height / 2;
               const maxTilt = 12;
-              const tiltX = ((x - centerX) / centerX) * maxTilt;
-              const tiltY = -((y - centerY) / centerY) * maxTilt;
+              const safeX = Math.max(0, Math.min(rect.width, x));
+              const safeY = Math.max(0, Math.min(rect.height, y));
+              const tiltX = ((safeX - centerX) / centerX) * maxTilt;
+              const tiltY = -((safeY - centerY) / centerY) * maxTilt;
               setSpotifyTilt({
                 x: tiltX.toFixed(2),
                 y: tiltY.toFixed(2),
@@ -202,8 +204,10 @@ function MainPage() {
               const centerX = rect.width / 2;
               const centerY = rect.height / 2;
               const maxTilt = 12;
-              const tiltX = ((x - centerX) / centerX) * maxTilt;
-              const tiltY = -((y - centerY) / centerY) * maxTilt;
+              const safeX = Math.max(0, Math.min(rect.width, x));
+              const safeY = Math.max(0, Math.min(rect.height, y));
+              const tiltX = ((safeX - centerX) / centerX) * maxTilt;
+              const tiltY = -((safeY - centerY) / centerY) * maxTilt;
               setSpotifyTilt({
                 x: tiltX.toFixed(2),
                 y: tiltY.toFixed(2),
@@ -227,7 +231,16 @@ function MainPage() {
           <li><a href="https://instagram.com/arhaanjafrii" className="link slightbold" target="_blank" rel="noopener noreferrer">@arhaanjafrii</a> on instagram</li>
         </ul>
       </div>
-      <div className="copyright">© 2025 Arhaan Jafri</div>
+      <div className="copyright">
+        <span className="copyright-inner">
+          <span className="copyright-symbol">©</span> 2025
+          <img
+            src="/arhaanjafrilogo.png"
+            alt="Arhaan Jafri Logo"
+            className="copyright-logo"
+          />
+        </span>
+      </div>
     </div>
   );
 }

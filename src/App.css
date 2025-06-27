@@ -366,7 +366,9 @@
 }
 
 .copyright {
-  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  width: auto;
   text-align: left;
   margin-top: 2rem;
   color: #888;
@@ -378,6 +380,26 @@
 }
 .copyright:hover {
   opacity: 1;
+  color: #fff !important;
+}
+.copyright:hover .copyright-logo {
+  opacity: 1;
+  filter: none;
+}
+
+.copyright-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.05em;
+}
+
+.copyright-logo {
+  height: 6em;
+  vertical-align: middle;
+  opacity: 0.35;
+  transition: opacity 0.2s, filter 0.2s, transform 0.2s;
+  cursor: pointer;
+  transform: translateY(-0.18em);
 }
 
 .robot {
@@ -585,6 +607,14 @@ body {
     transform: scale(1);
     width: 100vw;
   }
+}
+
+.copyright-symbol {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8em;
+  margin-right: 0.35em;
+  margin-top: .05em;
+  vertical-align: middle;
 }
 
 
