@@ -563,4 +563,28 @@
   width: 210px;
 }
 
+body {
+  /*laptop*/
+  transform: scale(1.1);
+  transform-origin: top left;
+  width: 83.33vw; /* 100 / 1.2 */
+  overflow-x: hidden;
+}
+
+/*  large screens */
+@media (min-width: 1600px) {
+  body {
+    transform: scale(1.3);
+    width: 66.67vw; /* 100 / 1.5 */
+  }
+}
+
+/*  small screens */
+@media (max-width: 900px) {
+  body {
+    transform: scale(1);
+    width: 100vw;
+  }
+}
+
 
